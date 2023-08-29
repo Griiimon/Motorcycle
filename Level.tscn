@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8my8qgecbb4n"]
+[gd_scene load_steps=7 format=3 uid="uid://c8my8qgecbb4n"]
 
 [ext_resource type="Script" path="res://Wheel.gd" id="1_12p3b"]
+[ext_resource type="Script" path="res://Motorcycle.gd" id="1_kcr4i"]
 [ext_resource type="Texture2D" uid="uid://urfe8cj4sh2u" path="res://icon.svg" id="2_egp0j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r7ags"]
@@ -21,8 +22,12 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_r7ags")
 
-[node name="MotorCycle" type="Node2D" parent="."]
+[node name="MotorCycle" type="Node2D" parent="." node_paths=PackedStringArray("front_wheel", "rear_wheel", "body")]
 position = Vector2(174, 383)
+script = ExtResource("1_kcr4i")
+front_wheel = NodePath("Front Wheel")
+rear_wheel = NodePath("Rear Wheel")
+body = NodePath("Bike Body")
 metadata/_edit_group_ = true
 
 [node name="Rear Joint" type="PinJoint2D" parent="MotorCycle"]
@@ -58,6 +63,7 @@ shape = SubResource("CircleShape2D_xpb3g")
 
 [node name="Front Wheel" type="RigidBody2D" parent="MotorCycle"]
 position = Vector2(67, 66)
+script = ExtResource("1_12p3b")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="MotorCycle/Front Wheel"]
