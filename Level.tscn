@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8my8qgecbb4n"]
+
+[ext_resource type="Script" path="res://Wheel.gd" id="1_12p3b"]
+[ext_resource type="Texture2D" uid="uid://urfe8cj4sh2u" path="res://icon.svg" id="2_egp0j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r7ags"]
+size = Vector2(5000, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2yrou"]
+size = Vector2(200, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xpb3g"]
+radius = 40.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(583, 517)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_r7ags")
+
+[node name="MotorCycle" type="Node2D" parent="."]
+position = Vector2(174, 383)
+metadata/_edit_group_ = true
+
+[node name="Rear Joint" type="PinJoint2D" parent="MotorCycle"]
+position = Vector2(-64, 66)
+node_a = NodePath("../Bike Body")
+node_b = NodePath("../Rear Wheel")
+
+[node name="Front Joint" type="PinJoint2D" parent="MotorCycle"]
+position = Vector2(67, 66)
+node_a = NodePath("../Bike Body")
+node_b = NodePath("../Front Wheel")
+
+[node name="Bike Body" type="RigidBody2D" parent="MotorCycle"]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MotorCycle/Bike Body"]
+shape = SubResource("RectangleShape2D_2yrou")
+
+[node name="Rear Wheel" type="RigidBody2D" parent="MotorCycle"]
+position = Vector2(-64, 66)
+script = ExtResource("1_12p3b")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="MotorCycle/Rear Wheel"]
+modulate = Color(1, 1, 1, 0.407843)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_egp0j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MotorCycle/Rear Wheel"]
+shape = SubResource("CircleShape2D_xpb3g")
+
+[node name="Camera2D" type="Camera2D" parent="MotorCycle/Rear Wheel"]
+
+[node name="Front Wheel" type="RigidBody2D" parent="MotorCycle"]
+position = Vector2(67, 66)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="MotorCycle/Front Wheel"]
+modulate = Color(1, 1, 1, 0.407843)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_egp0j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MotorCycle/Front Wheel"]
+shape = SubResource("CircleShape2D_xpb3g")
