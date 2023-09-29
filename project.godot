@@ -10,9 +10,9 @@ config_version=5
 
 [application]
 
-config/name="Tests"
+config/name="Motorcycle"
 run/main_scene="res://Level.tscn"
-config/features=PackedStringArray("4.1", "GL Compatibility")
+config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [rendering]
